@@ -1,0 +1,17 @@
+[project]
+name = "action-tools"
+version = "0.1.0"
+description = "A CLI for common tasks when working on Github Actions and reusable workflows"
+readme = "README.md"
+authors = [
+    { name = "Graham Beckley", email = "gbeckley@mozilla.com" }
+]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+action-tools = "action_tools:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
