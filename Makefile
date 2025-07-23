@@ -11,7 +11,7 @@ help: ## Show this help
 
 .PHONY: clean
 clean: ## Remove dependencies, tool caches, and build artifacts
-	@rm -rf .pytest_cache .ruff_cache dist .venv
+	@rm -rf .pytest_cache .ruff_cache dist .venv .mypy_cache
 
 .PHONY: format
 format: .venv/.install.stamp ## Run code formatting tools (update in place)
