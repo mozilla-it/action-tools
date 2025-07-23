@@ -1,0 +1,10 @@
+name: Hello World
+description: Minimal GitHub Action
+inputs:
+  greeting:
+    description: The greeting to use
+    required: true
+    example: Hello
+  target:
+    description: Who to give the greeting to
+    default: World
