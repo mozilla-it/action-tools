@@ -26,6 +26,8 @@ dev = [
     "pytest>=8.4.1",
     "pytest-mock>=3.14.1",
     "ruff>=0.12.4",
+    "tox>=4.28.1",
+    "tox-uv>=1.26.2",
 ]
 
 [tool.ruff.lint]
@@ -35,3 +37,11 @@ extend-select = ["I", "PT"]
 addopts = [
     "--import-mode=importlib",
 ]
+
+[tool.tox]
+env_list = ["3.10", "3.11", "3.12", "3.13"]
+
+[tool.tox.env_run_base]
+description = "Run tests under {base_python}"
+runner = "uv-venv-lock-runner"
+commands = [["pytest"]]
