@@ -7,11 +7,41 @@ authors = [
     { name = "Graham Beckley", email = "gbeckley@mozilla.com" }
 ]
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "click>=8.2.1",
+    "jinja2>=3.1.6",
+    "pydantic>=2.11.7",
+    "ruamel-yaml>=0.18.14",
+]
 
 [project.scripts]
-action-tools = "action_tools:main"
+action-tools = "action_tools.cli:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+    "pytest-mock>=3.14.1",
+    "ruff>=0.12.4",
+    "tox>=4.28.1",
+    "tox-uv>=1.26.2",
+]
+
+[tool.ruff.lint]
+extend-select = ["I", "PT"]
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
+
+[tool.tox]
+env_list = ["3.10", "3.11", "3.12", "3.13"]
+
+[tool.tox.env_run_base]
+description = "Run tests under {base_python}"
+runner = "uv-venv-lock-runner"
+commands = [["pytest"]]
