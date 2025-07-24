@@ -16,10 +16,10 @@ init: pyproject.toml ## Set up virtual environment and install dependencies
 	@uv sync --locked --all-extras --dev
 
 .PHONY: lint
-lint: pyproject.toml ## Run code linting tools
+lint: pyproject.toml ## Run linting tools and check formatting
 	@uv run ruff check . && uv run ruff format --check
 
 .PHONY: test
-test: pyproject.toml ## Run server tests
+test: pyproject.toml ## Run tests
 	@uv run tox
 
