@@ -5,7 +5,7 @@ help: ## Show this help
 
 .PHONY: clean
 clean: ## Remove dependencies, tool caches, and build artifacts
-	@rm -rf .pytest_cache .ruff_cache dist .venv .mypy_cache
+	@rm -rf .pytest_cache .ruff_cache dist .venv .mypy_cache .tox
 
 .PHONY: format
 format: pyproject.toml ## Run code formatting tools (update in place)
