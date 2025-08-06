@@ -80,7 +80,7 @@ def test_no_origin(action_yml_root, remote_no_origin):
 
 def test_generate_action_docs_basic(tmp_path, mocker):
     (tmp_path / ".git").mkdir()
-    input_path = pathlib.Path("tests/gendocs/__fixtures__/action.yml")
+    input_path = pathlib.Path("tests/__fixtures__/action.yml")
     shutil.copy(input_path, tmp_path)
 
     output_path = tmp_path / "README.md"
@@ -95,8 +95,6 @@ def test_generate_action_docs_basic(tmp_path, mocker):
         output_path=output_path,
     )
 
-    expected_content = pathlib.Path(
-        "tests/gendocs/__fixtures__/EXPECTED.md"
-    ).read_text()
+    expected_content = pathlib.Path("tests/__fixtures__/EXPECTED.md").read_text()
     actual_content = output_path.read_text()
     assert expected_content == actual_content
