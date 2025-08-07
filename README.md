@@ -23,6 +23,27 @@ Options:
   --help                          Show this message and exit.
 ```
 
+### `usage`
+```
+> action-tools usage --help
+
+Usage: action-tools usage [OPTIONS] TARGET
+
+  Search GitHub for repositories that reference a reusable workflow or action.
+
+  TARGET must be a reference to a GitHub Action or reusable workflow as would
+  be specified in a job or step's `uses` directive.
+
+Options:
+  --token TEXT  GitHub token for authentication
+  --help        Show this message and exit.
+
+  Examples:
+    action-tools usage "my-org/my-repo/.github/workflows/build.yml"
+    action-tools usage "my-org/my-action/action-dir"
+    action-tools usage "my-org/my-action@v1.2.3"
+```
+
 ## Setup
 
 ### Required Dependencies
