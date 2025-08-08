@@ -64,6 +64,8 @@ class Client:
             link_header = resp.headers.get("link")
             if not link_header:
                 break
+            # used to match the `link:` headers as described here
+            # https://docs.github.com/en/rest/using-the-rest-api/using-pagination-in-the-rest-api?apiVersion=2022-11-28#using-link-headers
             if match := re.search(r'<(?P<next_url>[^>]+)>;\s*rel="next"', link_header):
                 parsed = urlparse(match.group("next_url"))
                 current_endpoint = parsed.path
