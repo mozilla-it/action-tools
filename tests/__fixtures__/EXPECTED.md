@@ -16,14 +16,14 @@ Minimal GitHub Action
 ## Example Usage
 ### Minimal Configuration
 ```yaml
-- uses: org/repo/tests/gendocs/__fixtures__
+- uses: org/repo/tests/__fixtures__
   with:
     greeting: Hello
 ```
 
 ### Minimal Configuration with Defaults
 ```yaml
-- uses: org/repo/tests/gendocs/__fixtures__
+- uses: org/repo/tests/__fixtures__
   with:
     greeting: Hello
     target: World

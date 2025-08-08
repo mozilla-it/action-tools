@@ -28,3 +28,17 @@ class GitHubAction(BaseModel):
     description: str
     inputs: dict[str, ActionInput] = {}
     outputs: dict[str, ActionOutput] = {}
+
+
+class Resource(BaseModel):
+    org: str
+    repo: str
+    subpath: str
+
+
+class Workflow(Resource):
+    pass
+
+
+class Action(Resource):
+    pass
