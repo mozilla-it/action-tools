@@ -6,11 +6,12 @@ import click
 from . import github
 from .models import Action, Resource, Workflow
 
+# Captures the way a reusable workflow would be specified in a `uses:` directive in a Github action workflow
 WORKFLOW_REGEX = re.compile(
     r"^(?P<org>[\w.-]+)/(?P<repo>[\w.-]+)(?P<subpath>/\.github/workflows/.+\.(yaml|yml))(?:@.+)?$"
 )
 
-
+# Captures the way an action would be specified in a `uses:` directive in a Github action workflow
 ACTION_REGEX = re.compile(
     r"^(?P<org>[\w.-]+)/(?P<repo>[\w.-]+)(?P<subpath>(?:/[\w.-]+)*)(?:@.+)?$"
 )
