@@ -5,14 +5,16 @@ from urllib.parse import parse_qsl, urlparse
 import httpx
 
 
-class ClientError(Exception):
+class ClientStatusError(Exception):
     def __init__(
         self,
         message: str,
+        status_code: int,
         request: httpx.Request,
         response: httpx.Response,
     ):
         super().__init__(message)
+        self.status_code = status_code
         self.request = request
         self.response = response
 
@@ -39,8 +41,9 @@ class Client:
             try:
                 resp.raise_for_status()
             except httpx.HTTPStatusError as exc:
-                raise ClientError(
+                raise ClientStatusError(
                     str(exc),
+                    status_code=exc.response.status_code,
                     request=exc.request,
                     response=exc.response,
                 ) from exc

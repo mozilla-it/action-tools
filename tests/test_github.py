@@ -1,6 +1,6 @@
 import pytest
 
-from action_tools.github import Client, ClientError
+from action_tools.github import Client, ClientStatusError
 
 
 @pytest.fixture
@@ -21,10 +21,10 @@ def test_get_repo_contents_not_found(github_client, respx_mock):
     mock_url = f"{github_client.base_url}/repos/testorg/testrepo/contents"
     respx_mock.get(mock_url).respond(404, json={"message": "Not Found"})
 
-    with pytest.raises(ClientError) as exc_info:
+    with pytest.raises(ClientStatusError) as exc_info:
         github_client.get_repo_contents("testorg", "testrepo")
     assert "404" in str(exc_info.value)
-    assert exc_info.value.response.status_code == 404
+    assert exc_info.value.status_code == 404
 
 
 def test_search_code_success(github_client, respx_mock):

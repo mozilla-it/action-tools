@@ -37,8 +37,8 @@ def validate_exists(resource: Resource, client: github.Client) -> bool:
         contents = client.get_repo_contents(
             org=resource.org, repo=resource.repo, subpath=resource.subpath
         )
-    except github.ClientError as exc:
-        if exc.response.status_code == 404:
+    except github.ClientStatusError as exc:
+        if exc.status_code == 404:
             return False
 
     if isinstance(resource, Workflow):

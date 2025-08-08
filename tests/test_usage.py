@@ -1,4 +1,4 @@
-from unittest.mock import MagicMock, Mock
+from unittest.mock import MagicMock
 
 import pytest
 
@@ -103,8 +103,10 @@ def test_validate_exists_action_false(mock_github_client):
 
 def test_validate_exists_not_found(mock_github_client):
     resource = Action(org="org", repo="repo", subpath="/nope")
-    mock_github_client.get_repo_contents.side_effect = usage_module.github.ClientError(
-        "Not Found", request=None, response=Mock(status_code=404)
+    mock_github_client.get_repo_contents.side_effect = (
+        usage_module.github.ClientStatusError(
+            "Not Found", status_code=404, request=None, response=None
+        )
     )
 
     assert not validate_exists(resource, mock_github_client)
