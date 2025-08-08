@@ -29,7 +29,7 @@ def classify_target(target: str) -> Resource:
             repo=match.group("repo"),
             subpath=match.group("subpath"),
         )
-    raise ValueError(f"target {target} does not appear to be a valid resource")
+    raise ValueError(f"target {target} does not appear to be an action or workflow")
 
 
 def validate_exists(resource: Resource, client: github.Client) -> bool:
@@ -47,7 +47,10 @@ def validate_exists(resource: Resource, client: github.Client) -> bool:
         return any(file["name"] in {"action.yml", "action.yaml"} for file in contents)
     else:
         raise ValueError(
-            f"invalid resource: {resource} does not appear to be a path to an action or workflow"
+            f"Unsupported resource type or invalid path: expected a workflow or action at "
+            f"{resource.org}/{resource.repo}/{resource.subpath}, but none was found. "
+            "Ensure the path exists in the repository and contains a valid GitHub Action "
+            "(with 'action.yml' or 'action.yaml') or a workflow file."
         )
 
 
