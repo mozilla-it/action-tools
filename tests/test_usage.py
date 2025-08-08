@@ -112,6 +112,18 @@ def test_validate_exists_not_found(mock_github_client):
     assert not validate_exists(resource, mock_github_client)
 
 
+def test_validate_exists_another_status_error(mock_github_client):
+    resource = Action(org="org", repo="repo", subpath="/nope")
+    mock_github_client.get_repo_contents.side_effect = (
+        usage_module.github.ClientStatusError(
+            "Gulp.", status_code=500, request=None, response=None
+        )
+    )
+
+    with pytest.raises(github.ClientStatusError):
+        validate_exists(resource, mock_github_client)
+
+
 # ---------- find_usage ----------
 
 
