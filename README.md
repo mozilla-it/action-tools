@@ -38,10 +38,14 @@ Options:
   --token TEXT  GitHub token for authentication
   --help        Show this message and exit.
 
-  Examples:
+  Example Usage:
     action-tools usage "my-org/my-repo/.github/workflows/build.yml"
     action-tools usage "my-org/my-action/action-dir"
     action-tools usage "my-org/my-action@v1.2.3"
+
+  Example Output:
+    some-org/some-repo
+    some-org/another-repo
 ```
 
 ## Setup

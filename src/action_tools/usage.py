@@ -75,10 +75,15 @@ def _usage(target: str, token: str, client: Optional[github.Client] = None):
 
 @click.command(
     epilog="""\b
-    Examples:
+    Example Usage:
       action-tools usage "my-org/my-repo/.github/workflows/build.yml"
       action-tools usage "my-org/my-action/action-dir"
       action-tools usage "my-org/my-action@v1.2.3"
+    
+    \b
+    Example Output:
+      some-org/some-repo
+      some-org/another-repo
     """
 )
 @click.argument("target", type=str)
